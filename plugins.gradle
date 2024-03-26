@@ -3,7 +3,7 @@ import org.gradle.initialization.DefaultSettings
 import org.apache.tools.ant.taskdefs.condition.Os
 
 def generatedFileName = "PackageList.java"
-def generatedFilePackage = "co.median.android"
+def generatedFilePackage = "com.devops.wots48"
 def generatedFileContentsTemplate = """
 package $generatedFilePackage;
 
@@ -11,7 +11,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 
-import co.median.median_core.BridgeModule;
+;
 import java.util.Arrays;
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ class GoNativeModules {
     private Logger logger
     private ArrayList<HashMap<String, String>> modulesMetadata
 
-    private packageName = "co.median.android"
+    private packageName = "com.devops.android"
 
     GoNativeModules(Logger logger) {
         this.logger = logger

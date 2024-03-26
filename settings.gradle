@@ -1,4 +1,4 @@
-rootProject.name = 'GoNative'
+rootProject.name = 'Wots48App'
 System.setProperty("user.dir", rootProject.projectDir.toString())
 apply from: file("./plugins.gradle"); applyModulesSettingsGradle(settings)
 
