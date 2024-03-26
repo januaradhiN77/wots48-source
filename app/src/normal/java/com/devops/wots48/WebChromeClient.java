@@ -1,4 +1,4 @@
-package co.median.android;
+package com.devops.wots48;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -22,14 +22,13 @@ import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
 
-import co.median.median_core.AppConfig;
-import co.median.median_core.GNLog;
+import com.devops.devops_core.AppConfig;
+import com.devops.devops_core.GNLog;
 
 /**
-* Created by weiyin on 2/2/15.
-* Copyright 2014 GoNative.io LLC
+
 */
-class GoNativeWebChromeClient extends WebChromeClient {
+class WebChromeClient extends WebChromeClient {
     private final MainActivity mainActivity;
     private final UrlNavigation urlNavigation;
     private final boolean webviewConsoleLogEnabled;
@@ -38,13 +37,13 @@ class GoNativeWebChromeClient extends WebChromeClient {
     private boolean isFullScreen = false;
     private long deniedGeolocationUptime;
 
-    public GoNativeWebChromeClient(MainActivity mainActivity, UrlNavigation urlNavigation) {
+    public WebChromeClient(MainActivity mainActivity, UrlNavigation urlNavigation) {
         this.mainActivity = mainActivity;
         this.urlNavigation = urlNavigation;
         this.deniedGeolocationUptime = 0;
         this.webviewConsoleLogEnabled = AppConfig.getInstance(mainActivity).enableWebConsoleLogs;
         if (this.webviewConsoleLogEnabled) {
-            Log.d("GoNative WebView", "Web Console logs enabled");
+            Log.d("Wots48 WebView", "Web Console logs enabled");
         }
     }
 

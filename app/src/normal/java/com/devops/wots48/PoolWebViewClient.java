@@ -1,4 +1,4 @@
-package co.median.android;
+package com.devops.wots48;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -8,7 +8,7 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import co.median.median_core.GoNativeWebviewInterface;
+import com.devops.devops_core.WebviewInterface;
 
 /**
  * Created by weiyin on 9/9/15.
@@ -33,12 +33,12 @@ public class PoolWebViewClient extends WebViewClient {
             }
         });
 
-        webViewPoolCallback.onPageFinished((GoNativeWebviewInterface) view, url);
+        webViewPoolCallback.onPageFinished((WebviewInterface) view, url);
     }
 
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-        return webViewPoolCallback.interceptHtml((GoNativeWebviewInterface)view, url);
+        return webViewPoolCallback.interceptHtml((WebviewInterface)view, url);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

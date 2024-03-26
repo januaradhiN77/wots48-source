@@ -1,4 +1,4 @@
-package co.median.android;
+package com.devops.wots48;
 
 import java.io.IOException;
 import java.net.CookiePolicy;
@@ -11,8 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import co.median.median_core.AppConfig;
-import co.median.median_core.LeanUtils;
+import com.devops.devops_core.AppConfig;
+import com.devops.devops_core.LeanUtils;
 
 // this syncs cookies between webkit (webview) and java.net classes
 public class WebkitCookieManagerProxy extends java.net.CookieManager {

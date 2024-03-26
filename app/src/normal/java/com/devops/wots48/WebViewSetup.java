@@ -1,4 +1,4 @@
-package co.median.android;
+package com.devops.wots48;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,9 +10,9 @@ import android.webkit.WebView;
 
 import java.util.Map;
 
-import co.median.median_core.AppConfig;
-import co.median.median_core.GNLog;
-import co.median.median_core.GoNativeWebviewInterface;
+import com.devops.devops_core.AppConfig;
+import com.devops.devops_core.GNLog;
+import com.devops.devops_core.WebviewInterface;
 
 /**
  * Created by weiyin on 9/8/15.
@@ -21,7 +21,7 @@ public class WebViewSetup {
     private static final String TAG = WebViewSetup.class.getName();
 
     @SuppressLint("JavascriptInterface")
-    public static void setupWebviewForActivity(GoNativeWebviewInterface webview, MainActivity activity) {
+    public static void setupWebviewForActivity(WebviewInterface webview, MainActivity activity) {
         if (!(webview instanceof LeanWebView)) {
             GNLog.getInstance().logError(TAG, "Expected webview to be of class LeanWebView and not " + webview.getClass().getName());
             return;
@@ -34,8 +34,8 @@ public class WebViewSetup {
         UrlNavigation urlNavigation = new UrlNavigation(activity);
         urlNavigation.setCurrentWebviewUrl(webview.getUrl());
 
-        wv.setWebChromeClient(new GoNativeWebChromeClient(activity, urlNavigation));
-        wv.setWebViewClient(new GoNativeWebviewClient(activity, urlNavigation));
+        wv.setWebChromeClient(new WebChromeClient(activity, urlNavigation));
+        wv.setWebViewClient(new WebviewClient(activity, urlNavigation));
 
         FileDownloader fileDownloader = activity.getFileDownloader();
         if (fileDownloader != null) {
@@ -44,25 +44,25 @@ public class WebViewSetup {
         }
 
         ProfilePicker profilePicker = activity.getProfilePicker();
-        wv.removeJavascriptInterface("gonative_profile_picker");
+        wv.removeJavascriptInterface("devops_profile_picker");
         if (profilePicker != null) {
-            wv.addJavascriptInterface(profilePicker.getProfileJsBridge(), "gonative_profile_picker");
+            wv.addJavascriptInterface(profilePicker.getProfileJsBridge(), "devops_profile_picker");
         }
 
-        wv.removeJavascriptInterface("median_status_checker");
-        wv.addJavascriptInterface(activity.getStatusCheckerBridge(), "median_status_checker");
+        wv.removeJavascriptInterface("wots48_status_checker");
+        wv.addJavascriptInterface(activity.getStatusCheckerBridge(), "wots48_status_checker");
 
-        wv.removeJavascriptInterface("gonative_file_writer_sharer");
-        wv.addJavascriptInterface(activity.getFileWriterSharer().getJavascriptBridge(), "gonative_file_writer_sharer");
+        wv.removeJavascriptInterface("devops_file_writer_sharer");
+        wv.addJavascriptInterface(activity.getFileWriterSharer().getJavascriptBridge(), "devops_file_writer_sharer");
 
         wv.removeJavascriptInterface("JSBridge");
         wv.addJavascriptInterface(activity.getJavascriptBridge(), "JSBridge");
 
-        ((GoNativeApplication) activity.getApplication()).mBridge.onWebviewSetUp(activity, wv);
+        ((Application) activity.getApplication()).mBridge.onWebviewSetUp(activity, wv);
 
         if (activity.getIntent().getBooleanExtra(MainActivity.EXTRA_WEBVIEW_WINDOW_OPEN, false)) {
             // send to other webview
-            Message resultMsg = ((GoNativeApplication)activity.getApplication()).getWebviewMessage();
+            Message resultMsg = ((Application)activity.getApplication()).getWebviewMessage();
             if (resultMsg != null) {
                 WebView.WebViewTransport transport = (WebView.WebViewTransport)resultMsg.obj;
                 if (transport != null) {
@@ -75,7 +75,7 @@ public class WebViewSetup {
 
     @SuppressWarnings("deprecation")
     @SuppressLint("SetJavaScriptEnabled")
-    public static void setupWebview(GoNativeWebviewInterface webview, Context context) {
+    public static void setupWebview(WebviewInterface webview, Context context) {
         if (!(webview instanceof LeanWebView)) {
             GNLog.getInstance().logError(TAG, "Expected webview to be of class LeanWebView and not " + webview.getClass().getName());
             return;

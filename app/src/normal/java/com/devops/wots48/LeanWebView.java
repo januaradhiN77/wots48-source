@@ -1,4 +1,4 @@
-package co.median.android;
+package com.devops.wots48;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,12 +20,12 @@ import android.webkit.WebViewClient;
 import java.io.IOException;
 import java.io.StringReader;
 
-import co.median.median_core.GoNativeWebviewInterface;
+import com.devops.devops_core.WebviewInterface;
 
 /**
  * Pass calls WebViewClient.shouldOverrideUrlLoading when loadUrl, reload, or goBack are called.
  */
-public class LeanWebView extends WebView implements GoNativeWebviewInterface {
+public class LeanWebView extends WebView implements WebviewInterface {
     private WebViewClient mClient = null;
     private WebChromeClient mChromeClient = null;
     private boolean checkLoginSignup = true;
@@ -130,8 +130,8 @@ public class LeanWebView extends WebView implements GoNativeWebviewInterface {
 
     @Override
     public void reload() {
-        if (mClient == null || !(mClient instanceof GoNativeWebviewClient)) super.reload();
-        else if(!((GoNativeWebviewClient)mClient).shouldOverrideUrlLoading(this, getUrl(), true))
+        if (mClient == null || !(mClient instanceof WebviewClient)) super.reload();
+        else if(!((WebviewClient)mClient).shouldOverrideUrlLoading(this, getUrl(), true))
             super.reload();
     }
 
@@ -249,7 +249,7 @@ public class LeanWebView extends WebView implements GoNativeWebviewInterface {
                             }
                         }
                     } catch (IOException e) {
-                        JsResultBridge.jsResult = "GoNativeGetJsResultsError";
+                        JsResultBridge.jsResult = "DevopsGetJsResultsError";
                     }
                 }
             });
@@ -257,8 +257,8 @@ public class LeanWebView extends WebView implements GoNativeWebviewInterface {
     }
 
     public boolean exitFullScreen() {
-        if (mChromeClient != null && mChromeClient instanceof GoNativeWebChromeClient) {
-            return ((GoNativeWebChromeClient) mChromeClient).exitFullScreen();
+        if (mChromeClient != null && mChromeClient instanceof WebChromeClient) {
+            return ((WebChromeClient) mChromeClient).exitFullScreen();
         } else {
             return false;
         }
@@ -299,7 +299,7 @@ public class LeanWebView extends WebView implements GoNativeWebviewInterface {
     }
     
     /**
-     * @deprecated use GoNativeEdgeSwipeLayout in place of LeanWebView's swipe listener.
+     * @deprecated 
      */
     @Deprecated
     public OnSwipeListener getOnSwipeListener() {
@@ -307,7 +307,7 @@ public class LeanWebView extends WebView implements GoNativeWebviewInterface {
     }
     
     /**
-     * @deprecated use GoNativeEdgeSwipeLayout in place of LeanWebView's swipe listener.
+     * @deprecated 
      */
     @Deprecated
     public void setOnSwipeListener(OnSwipeListener onSwipeListener) {
