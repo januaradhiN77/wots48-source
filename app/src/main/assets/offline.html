@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Error Message</title>
+  
+  <!-- HTML -->
+  
+<style>
+        * {
+
+  margin: 0;
+  user-select: none;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  user-select: none;
+  
+}
+body{
+      background-color: #1E1E21;
+}
+.error{
+        display: flex;
+        justify-content: center;
+        align-items: center ;
+        width: 100%;
+}
+.error_message_detail{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+}
+.error_message_detail img{
+        width: 75%;
+}
+.error_message_detail span{
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        font-weight: 500;
+}
+.button{
+
+  background-color: transparent;
+
+  border: 2px solid #FFFFFF; 
+  color: white; 
+  margin-top: 50px;
+  padding: 0px 0px; 
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  font-weight: 500;
+  border-radius: 5px; 
+  
+}
+.button:hover{
+   background-color: white;
+   color: #1E1E21;
+}
+</style>
+  <!-- Custom Styles -->
+  
+</head>
+
+<body>
+<section class="error">
+ <div class="error_message_detail">
+<img src="https://ellatheria.my.id/img/error_message.png" alt="Terjadi Kesalahan">
+ <span>Oops! Terjadi kesalahan<br> Cek internet anda dan coba lagi</span>
+ <button class="button" onclick="goToWebsite('https://dc.crstlnz.my.id')">Retry</button>
+ </div>
+ </section>
+ <script>
+         function goToWebsite(websiteURL) {
+      window.location.href = websiteURL;
+      //alert("Oops! Terjadi kesalahan. 4000");
+    }
+ </script>
+  
+</body>
+</html>
